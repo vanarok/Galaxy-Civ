@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://b6ay2hv20e7pu"]
+
+[ext_resource type="Script" path="res://Game.gd" id="1_f0dvf"]
+[ext_resource type="Texture2D" uid="uid://db2cghd6obbev" path="res://assets/background.jpg" id="2_wolfq"]
+[ext_resource type="Script" path="res://Galaxy.gd" id="3_ta8jm"]
+[ext_resource type="Script" path="res://Camera2D.gd" id="4_t5mpr"]
+[ext_resource type="Script" path="res://StarSystem.gd" id="5_e3gu7"]
+[ext_resource type="Script" path="res://Planet.gd" id="6_o1ik1"]
+
+[node name="Game" type="Node"]
+script = ExtResource("1_f0dvf")
+
+[node name="Background" type="TextureRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1368.0
+offset_top = -960.0
+offset_right = 240.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+texture = ExtResource("2_wolfq")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="ShaderGlobalsOverride" type="ShaderGlobalsOverride" parent="Background"]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Background"]
+
+[node name="Galaxy" type="Node2D" parent="."]
+script = ExtResource("3_ta8jm")
+
+[node name="Camera2D" type="Camera2D" parent="Galaxy"]
+position_smoothing_enabled = true
+script = ExtResource("4_t5mpr")
+
+[node name="StarSystem" type="Node2D" parent="Galaxy"]
+script = ExtResource("5_e3gu7")
+
+[node name="Planet" type="Node2D" parent="Galaxy/StarSystem"]
+script = ExtResource("6_o1ik1")
